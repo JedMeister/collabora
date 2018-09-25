@@ -1,9 +1,21 @@
 #!/bin/sh -ex
 
-# setup fastcgi/nginx
-update-rc.d php-fastcgi defaults
+# Collabora sources.list and pinning done via overlay
+PKGS="apt-transport-https lsb-release ca-certificates loolwsd code-brand"
+apt update
+DEBIAN_FRONTEND=noninteractive apt install -y $PKGS
 
+# Collabora won't start unless there are a valid cert and key in expected locations
+turnkey-make-ssl-cert --out /etc/loolwsd/cert.pem
+mv /etc/loolwsd/cert.key /etc/loolwsd/key.pem
+ln -s /etc/loolwsd/cert.pem /etc/loolwsd/ca-chain.cert.pem
+chown lool:lool /etc/loolwsd/key.pem
+
+# Nginx tweaks
 mkdir -p /var/run/nginx
 chown root:www-data /var/run/nginx
 chmod 770 /var/run/nginx
 
+# enable Nginx reverse proxy for Collabora (conf in overlay)
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/collabora /etc/nginx/sites-enabled/collabora
