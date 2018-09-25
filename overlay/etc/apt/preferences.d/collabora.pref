@@ -1,0 +1,23 @@
+Package: *
+Pin: origin www.collaboraoffice.com
+Pin-Priority: -1
+
+Package: loolwsd
+Pin: origin www.collaboraoffice.com
+Pin-Priority: 550
+
+Package: code-brand
+Pin: origin www.collaboraoffice.com
+Pin-Priority: 550
+
+Package: collaboraoffice*
+Pin: origin www.collaboraoffice.com
+Pin-Priority: 550
+
+Package: libpoco*60*
+Pin: origin www.collaboraoffice.com
+Pin-Priority: 550
+
+#Package: 
+#Pin: origin www.collaboraoffice.com
+#Pin-Priority: 550

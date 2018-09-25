@@ -1,0 +1,3 @@
+# Official Collabora Online Development Edition (CODE) repo
+
+deb [signed-by=/usr/share/keyrings/collabora.gpg] https://www.collaboraoffice.com/repos/CollaboraOnline/CODE-debian9 ./
